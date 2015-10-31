@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!-- should be entity.User??? -->
+<mapper namespace="com.dy.shoppingSite.dao.UserDao">
+	<resultMap type="com.dy.shoppingSite.entity.User" id="UserResult">
+		<id column="ID" jdbcType="INTEGER" property="ID" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="phonenum" jdbcType="VARCHAR" property="phoneNum" />
+		<result column="money" jdbcType="FLOAT" property="money" />
+		<result column="avatar" jdbcType="VARCHAR" property="avatar" />
+		<result column="regtime" jdbcType="VARCHAR" property="regTime" />
+		<result column="role" jdbcType="VARCHAR" property="role" />
+	</resultMap>
+
+	<insert id="addUser" parameterType="User">
+		insert into shop_user values(#{id}, #{name}, #{password}, #{phoneNum},
+		#{money}, #{avatar,jdbcType = VARCHAR}, #{"regTime"}, #{role} )
+	</insert>
+
+</mapper>

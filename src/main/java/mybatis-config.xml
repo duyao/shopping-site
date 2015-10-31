@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- Each bean found in com.dy.shoppingSite.entity , if no annotation is 
+			found, will be registered as an alias using uncapitalized non-qualified class 
+			name of the bean. Thas is com.dy.shoppingSite.entity.User will be registered 
+			as User. If the @Alias annotation is found its value will be used as an alias. 
+			See the example below: -->
+		<package name="com.dy.shoppingSite.entity" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/dy/shoppingSite/dao/mapper/UserMapper.xml" />
+	</mappers>
+</configuration>
