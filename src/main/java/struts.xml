@@ -4,8 +4,8 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<constant name="struts.objectFactory" value="spring"></constant>
-	<package name="shoppingSite" extends="struts_default">
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="shoppingSite" extends="struts-default">
 		<!-- class是spring中制定的 -->
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="regsuc">/login.jsp </result>

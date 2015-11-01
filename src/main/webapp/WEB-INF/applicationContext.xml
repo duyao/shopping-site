@@ -26,7 +26,8 @@
 		<property name="userDao" ref="userMapper"></property>
 	</bean>
 
-	<bean id="userAction" class="com.dy.shoppngiSite.web.UserAction">
+	<bean id="userAction" class="com.dy.shoppngSite.web.UserAction"
+		scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
 

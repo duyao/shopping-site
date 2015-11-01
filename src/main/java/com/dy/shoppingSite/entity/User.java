@@ -2,7 +2,7 @@ package com.dy.shoppingSite.entity;
 
 public class User {
 
-	private String ID;
+	private String id;
 	private String name;
 	private String password;
 	private String phoneNum;
@@ -11,12 +11,12 @@ public class User {
 	private String regTime;
 	private String role;
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		id = id;
 	}
 
 	public String getName() {
@@ -73,6 +73,13 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password
+				+ ", phoneNum=" + phoneNum + ", money=" + money + ", avatar="
+				+ avatar + ", regTime=" + regTime + ", role=" + role + "]";
 	}
 
 }
