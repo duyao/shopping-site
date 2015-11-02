@@ -2,16 +2,37 @@ package com.dy.shoppngSite.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.dy.shoppingSite.entity.User;
 import com.dy.shoppingSite.service.UserService;
+import com.opensymphony.xwork2.ActionContext;
 
 public class UserAction {
 	private UserService userService;
 	private User user;
 	
+	public String login(){
+		User u = userService.login(user.getName(), user.getPassword());
+		if(u == null){
+			return "loginfail";
+		}else{
+			Map<String, Object> map = ActionContext.getContext().getSession();
+			//header.jsp中取出session的user
+			map.put("user", u);
+			return "loginsuc";
+		}
+	}
+	
+	public String logout(){
+		ActionContext.getContext().getSession().clear();
+		return "logout";
+	}
+	
+	//使用ajax和jquery来实现，需要服务器端返回一个无参数的函数
+	//参数传递使用response
 	public void isExist(){
 		boolean b = userService.isExist(user.getName());
 		try {

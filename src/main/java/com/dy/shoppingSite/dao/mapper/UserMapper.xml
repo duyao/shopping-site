@@ -10,7 +10,7 @@
 	<!-- resultMap type="com.dy.shoppingSite.entity.User"前面设置了typeAliases省略 -->
 	<resultMap type="User" id="UserResult">
 		<id column="id" property="id" />
-		<result column="name"  property="name" />
+		<result column="name" property="name" />
 		<result column="password" property="password" />
 		<result column="phoneNum" property="phoneNum" />
 		<result column="money" property="money" />
@@ -25,9 +25,13 @@
 		#{money},
 		#{avatar,jdbcType = VARCHAR}, #{regTime}, #{role} )
 	</insert>
-	
+
 	<select id="getNumByName" parameterType="string" resultType="int">
 		select count(*) from shop_user where name = #{name}
+	</select>
+
+	<select id="getUserByNameAndPwd" resultType="User">
+		select * from shop_user where name = #{0} and password = #{1}
 	</select>
 
 </mapper>

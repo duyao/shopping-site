@@ -23,8 +23,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(String name, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userDao.getUserByNameAndPwd(name, password);
+		
+		return user;
 	}
 
 	public UserDao getUserDao() {
