@@ -1,5 +1,7 @@
 package com.dy.shoppingSite.service.impl;
 
+import java.util.List;
+
 import com.dy.shoppingSite.dao.AddressDao;
 import com.dy.shoppingSite.entity.Address;
 import com.dy.shoppingSite.entity.User;
@@ -30,6 +32,11 @@ public class AddressServiceImpl implements AddressService{
 		addressDao.addAddress(address);
 		
 		
+	}
+	@Override
+	public List<Address> getAddress(String userid) {
+		// TODO Auto-generated method stub
+		return addressDao.getAddress(userid);
 	}
 
 }

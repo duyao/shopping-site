@@ -61,8 +61,8 @@
 							</div>
 							<table class="list_table" width="100%" cellpadding="0"
 								cellspacing="0">
-								<col width="120px" />
-								<col width="120px" />
+								<col width="70px" />
+								<col width="170px" />
 								<col width="120px" />
 								<col width="120px" />
 								<col width="120px" />
@@ -87,12 +87,12 @@
 											<td>${address.zip}</td>
 											<td><a class="blue" href='javascript:void(0)' onclick=''>修改</a>|
 												<a class="blue" href="javascript:void(0)" onclick="">删除</a>|
-												<c:if test="${address.isdefault eq 1}">
+												<c:if test="${address.isDefault eq 1}">
 													<a class="red2"
-														href="address_setDefault?address.id=${address.id}&address.isdefault=2">取消默认</a>
-												</c:if> <c:if test="${address.isdefault eq 2}">
+														href="address_setDefault?address.id=${address.id}&address.isDefault=2">取消默认</a>
+												</c:if> <c:if test="${address.isDefault eq 2}">
 													<a class="blue"
-														href="address_setDefault?address.id=${address.id}&address.isdefault=1">设为默认</a>
+														href="address_setDefault?address.id=${address.id}&address.isDefault=1">设为默认</a>
 												</c:if></td>
 										</tr>
 									</c:forEach>
@@ -140,7 +140,7 @@
 							</tr>
 							<tr>
 								<th>设为默认：</th>
-								<td><label><input name='address.isdefault'
+								<td><label><input name='address.isDefault'
 										type='checkbox' value='1'></label></td>
 							</tr>
 							<tr>

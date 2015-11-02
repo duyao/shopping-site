@@ -7,8 +7,19 @@
 <mapper namespace="com.dy.shoppingSite.dao.AddressDao">
 
 	<insert id="addAddress" parameterType="Address">
-		insert into shop_address values (#{id}, #{userid}, #{accepter}, #{zip,jdbcType = VARCHAR},
-		#{phoneNum,jdbcType = VARCHAR}, #{mobile,jdbcType = VARCHAR}, #{province}, #{city}, #{area}, #{address},
+		insert into shop_address
+		values (#{id}, #{userid}, #{accepter}, #{zip,jdbcType = VARCHAR},
+		#{phoneNum,jdbcType = VARCHAR}, #{mobile,jdbcType = VARCHAR},
+		#{province}, #{city}, #{area}, #{address},
 		#{isDefault})
 	</insert>
+
+	<!-- While this approach is simple, it will not perform well for large data 
+		sets or lists. This problem is known as the "N+1 Selects Problem". In a nutshell, 
+		the N+1 selects problem is caused. We can Nest Results for Association -->
+	<select id="getAddress" parameterType="string" resultType="Address">
+		select * from shop_address where userid = #{0}
+	</select>
+
+
 </mapper>

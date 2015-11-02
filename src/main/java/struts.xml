@@ -19,7 +19,8 @@
 		</action>
 
 		<action name="address_*" class="addressAction" method="{1}">
-			<result name="addAddress">/usercenter/address_list.jsp</result>
+			<result name="oprsuc" type="redirectAction">address_list</result>
+			<result name="list">/usercenter/address_list.jsp</result>
 		</action>
 
 	</package>
