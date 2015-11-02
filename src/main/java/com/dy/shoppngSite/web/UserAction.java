@@ -86,7 +86,6 @@ public class UserAction {
 			((User)ActionContext.getContext().getSession().get("user")).setAvatar("userAvatars/"+userId+suffix);
 			return "usercenter";
 			
-			
 		}
 		return path;
 		
