@@ -1,9 +1,13 @@
 package com.dy.shoppngSite.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.dy.shoppingSite.entity.User;
@@ -13,27 +17,34 @@ import com.opensymphony.xwork2.ActionContext;
 public class UserAction {
 	private UserService userService;
 	private User user;
-	
-	public String login(){
+
+	// 上传头像
+	// struts2对于文件上传已经规定好了属性
+	// setX(File file),setXFileName(String fileName),setXContentType(String
+	// contentType)
+	private File avatar;
+	private String avatarFileName;
+
+	public String login() {
 		User u = userService.login(user.getName(), user.getPassword());
-		if(u == null){
+		if (u == null) {
 			return "loginfail";
-		}else{
+		} else {
 			Map<String, Object> map = ActionContext.getContext().getSession();
-			//header.jsp中取出session的user
+			// header.jsp中取出session的user
 			map.put("user", u);
 			return "loginsuc";
 		}
 	}
-	
-	public String logout(){
+
+	public String logout() {
 		ActionContext.getContext().getSession().clear();
 		return "logout";
 	}
-	
-	//使用ajax和jquery来实现，需要服务器端返回一个无参数的函数
-	//参数传递使用response
-	public void isExist(){
+
+	// 使用ajax和jquery来实现，需要服务器端返回一个无参数的函数
+	// 参数传递使用response
+	public void isExist() {
 		boolean b = userService.isExist(user.getName());
 		try {
 			PrintWriter writer = ServletActionContext.getResponse().getWriter();
@@ -44,6 +55,44 @@ public class UserAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	//上传用户头像
+	public String uploadAvatar(){
+		String userId = ((User) ActionContext.getContext().getSession().get("user")).getId();
+		//得到文件存放的绝对地址
+		String path = ServletActionContext.getServletContext().getRealPath("/userAvatars");
+		System.out.println(path);
+		if(avatar != null){
+			//得到才上传文件的后缀名
+			String suffix = avatarFileName.substring(avatarFileName.lastIndexOf("."));
+			System.out.println(userId+suffix);
+			//得到新的文件，与上传文件相同，文件名是id+后缀名
+			File saveFile = new File(new File(path),userId+suffix);
+			try {
+				if(!saveFile.getParentFile().exists()){
+					saveFile.getParentFile().mkdir();
+				}
+				//把上传文件拷贝到服务器端/avatar
+				FileUtils.copyFile(avatar, saveFile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//存放到数据库中
+			userService.upadteAvatar(userId, "userAvatars/"+userId+suffix);
+			//更新session
+			((User)ActionContext.getContext().getSession().get("user")).setAvatar("userAvatars/"+userId+suffix);
+			return "usercenter";
+			
+			
+		}
+		return path;
+		
+		
+		
+		
 	}
 
 	public String reg() {
@@ -73,5 +122,21 @@ public class UserAction {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public File getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(File avatar) {
+		this.avatar = avatar;
+	}
+
+	public String getAvatarFileName() {
+		return avatarFileName;
+	}
+
+	public void setAvatarFileName(String avatarFileName) {
+		this.avatarFileName = avatarFileName;
 	}
 }

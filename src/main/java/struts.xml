@@ -12,6 +12,9 @@
 			<result name="loginfail">/login.jsp </result>
 			<result name="loginsuc">/index.jsp </result>
 			<result name="logout">/login.jsp </result>
+			<result name="usercenter">/usercenter/index.jsp</result>
+			
+			
 
 		</action>
 

@@ -11,13 +11,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void register(User user) {
 		// TODO Auto-generated method stub
-		System.out.println("fdsadsafd\n");
-		System.out.println(user.toString());
+//		System.out.println("fdsadsafd\n");
+//		System.out.println(user.toString());
 		user.setId(MyUntil.getID());
 		user.setRegTime(MyUntil.getNowTime());
 		user.setRole("u");
-		System.out.println("fdsadsafd\n");
-		System.out.println(user.toString());
+//		System.out.println("fdsadsafd\n");
+//		System.out.println(user.toString());
 		userDao.addUser(user);
 	}
 
@@ -44,6 +44,13 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public void upadteAvatar(String id, String avatar) {
+		// TODO Auto-generated method stub
+		userDao.upadteAvatar(id, avatar);
+		
 	}
 
 }

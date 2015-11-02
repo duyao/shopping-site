@@ -31,7 +31,14 @@
 	</select>
 
 	<select id="getUserByNameAndPwd" resultType="User">
+	<!-- 传入多个参数可以使用map，通过名字来取出，对于同一类型的多个传入参数，可以使用列号来取出 -->
 		select * from shop_user where name = #{0} and password = #{1}
 	</select>
+	
+	<select id="upadteAvatar">
+		update shop_user set avatar = #{1} where id =#{0}
+	</select>
+	
+	
 
 </mapper>
