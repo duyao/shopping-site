@@ -33,4 +33,17 @@
 
 
 
+	<bean id="addressMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dy.shoppingSite.dao.AddressDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="addressService" class="com.dy.shoppingSite.service.impl.AddressServiceImpl">
+		<property name="addressDao" ref="addressMapper"></property>
+	</bean>
+	<bean id="addressAction" class="com.dy.shoppngSite.web.AddressAction"
+		scope="prototype">
+		<property name="addressService" ref="addressService"></property>
+	</bean>
+
 </beans>

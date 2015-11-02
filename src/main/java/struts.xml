@@ -13,9 +13,13 @@
 			<result name="loginsuc">/index.jsp </result>
 			<result name="logout">/login.jsp </result>
 			<result name="usercenter">/usercenter/index.jsp</result>
-			
-			
 
+
+
+		</action>
+
+		<action name="address_*" class="addressAction" method="{1}">
+			<result name="addAddress">/usercenter/address_list.jsp</result>
 		</action>
 
 	</package>

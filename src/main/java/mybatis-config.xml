@@ -13,5 +13,6 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/dy/shoppingSite/dao/mapper/UserMapper.xml" />
+		<mapper resource="com/dy/shoppingSite/dao/mapper/AddressMapper.xml" />
 	</mappers>
 </configuration>

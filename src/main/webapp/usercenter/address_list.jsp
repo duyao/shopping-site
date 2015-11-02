@@ -80,7 +80,7 @@
 								<tbody>
 									<c:forEach items="${addresses}" var="address">
 										<tr>
-											<td>${address.accept}</td>
+											<td>${address.accepter}</td>
 											<td>${address.province}${address.city}${address.area}</td>
 											<td>${address.address}</td>
 											<td>${address.mobile}</td>
@@ -112,7 +112,7 @@
 							<caption>收货地址</caption>
 							<tr>
 								<th><span class="red">*</span> 收货人姓名：</th>
-								<td><input name='address.accept' class="normal" type="text" /><label>收货人真实姓名，方便快递公司联系。</label></td>
+								<td><input name='address.accepter' class="normal" type="text" /><label>收货人真实姓名，方便快递公司联系。</label></td>
 							</tr>
 							<tr>
 								<th><span class="red">*</span> 所在地区：</th>

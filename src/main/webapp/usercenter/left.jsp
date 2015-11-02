@@ -28,7 +28,7 @@
 		</div>
 		<div class="cont">
 			<ul class="list">
-				<li><a href="address_list">地址管理</a></li>
+				<li><a href="usercenter/address_list.jsp">地址管理</a></li>
 			</ul>
 		</div>
 	</div>

@@ -18,7 +18,7 @@
 		<result column="regTime" property="regTime" />
 		<result column="role" property="role" />
 	</resultMap>
-
+<!-- #{avatar,jdbcType = VARCHAR}当传入值为空的时候，使用varchar可以传入空值 -->
 	<insert id="addUser" parameterType="User">
 		insert into shop_user
 		values(#{id}, #{name}, #{password}, #{phoneNum},
