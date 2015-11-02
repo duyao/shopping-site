@@ -7,4 +7,5 @@ public interface UserDao {
 	public void addUser(User user);
 	public User getUserByNameAndPwd(String name, String password);
 	public void upadteAvatar(String id, String avatar);
+	public int getNumByName(String name);
 }

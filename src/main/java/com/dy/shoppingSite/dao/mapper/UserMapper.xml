@@ -9,21 +9,25 @@
 <mapper namespace="com.dy.shoppingSite.dao.UserDao">
 	<!-- resultMap type="com.dy.shoppingSite.entity.User"前面设置了typeAliases省略 -->
 	<resultMap type="User" id="UserResult">
-		<id column="ID" jdbcType="INTEGER" property="id" />
-		<result column="name" jdbcType="VARCHAR" property="name" />
-		<result column="password" jdbcType="VARCHAR" property="password" />
-		<result column="phonenum" jdbcType="VARCHAR" property="phoneNum" />
-		<result column="money" jdbcType="FLOAT" property="money" />
-		<result column="avatar" jdbcType="VARCHAR" property="avatar" />
-		<result column="regtime" jdbcType="VARCHAR" property="regTime" />
-		<result column="role" jdbcType="VARCHAR" property="role" />
+		<id column="id" property="id" />
+		<result column="name"  property="name" />
+		<result column="password" property="password" />
+		<result column="phoneNum" property="phoneNum" />
+		<result column="money" property="money" />
+		<result column="avatar" property="avatar" />
+		<result column="regTime" property="regTime" />
+		<result column="role" property="role" />
 	</resultMap>
 
 	<insert id="addUser" parameterType="User">
 		insert into shop_user
 		values(#{id}, #{name}, #{password}, #{phoneNum},
 		#{money},
-		#{avatar,jdbcType = VARCHAR}, #{"regTime"}, #{role} )
+		#{avatar,jdbcType = VARCHAR}, #{regTime}, #{role} )
 	</insert>
+	
+	<select id="getNumByName" parameterType="string" resultType="int">
+		select count(*) from shop_user where name = #{name}
+	</select>
 
 </mapper>

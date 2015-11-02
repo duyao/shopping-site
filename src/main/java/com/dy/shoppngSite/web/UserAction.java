@@ -1,15 +1,29 @@
 package com.dy.shoppngSite.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.dy.shoppingSite.entity.User;
 import com.dy.shoppingSite.service.UserService;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction {
 	private UserService userService;
 	private User user;
+	
+	public void isExist(){
+		boolean b = userService.isExist(user.getName());
+		try {
+			PrintWriter writer = ServletActionContext.getResponse().getWriter();
+			writer.print(b);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public String reg() {
 		// The name attribute's value also has a reference to an object.
@@ -20,10 +34,6 @@ public class UserAction {
 		// the age form field to 25 when calling the setAge method of object
 		// personBean.
 		System.out.println("reg+user");
-		//System.out.println("uu"+uu.getName()+uu.getPassword());
-		String nameString = ActionContext.getContext().getValueStack().findString("name");
-		System.out.println(nameString);
-		System.out.println(user.getName()+user.getPassword());
 		userService.register(user);
 		return "regsuc";
 	}

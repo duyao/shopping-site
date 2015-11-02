@@ -11,14 +11,7 @@ public class User {
 	private String regTime;
 	private String role;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		id = id;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -80,6 +73,14 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", password=" + password
 				+ ", phoneNum=" + phoneNum + ", money=" + money + ", avatar="
 				+ avatar + ", regTime=" + regTime + ", role=" + role + "]";
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

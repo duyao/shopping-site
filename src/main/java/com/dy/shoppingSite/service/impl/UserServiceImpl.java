@@ -1,5 +1,6 @@
 package com.dy.shoppingSite.service.impl;
 
+
 import com.dy.shoppingSite.dao.UserDao;
 import com.dy.shoppingSite.entity.User;
 import com.dy.shoppingSite.service.UserService;
@@ -32,6 +33,16 @@ public class UserServiceImpl implements UserService {
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	@Override
+	public boolean isExist(String name) {
+		// TODO Auto-generated method stub
+		int num = userDao.getNumByName(name);
+		if(num == 0){
+			return false;
+		}
+		return true;
 	}
 
 }

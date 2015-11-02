@@ -6,4 +6,5 @@ public interface UserService {
 
 	public void register(User user);
 	public User login(String name, String password);
+	public boolean isExist(String name);
 }
