@@ -43,16 +43,17 @@ public class AddressServiceImpl implements AddressService{
 		// TODO Auto-generated method stub
 		return addressDao.getAddress(userid);
 	}
+	
 	@Override
-	public void setDefualt(String id) {
+	public void setDefualt(Address address) {
 		// TODO Auto-generated method stub
-		addressDao.setDefualt(id);
+		//不管是设置默认收货地址还是取消收货地址，都需要将所有地址设置为非默认
+		//再根据para传来的isDefault来选择
+		addressDao.setNotDefault(address.getUserid());
+		if(address.getIsDefault().equals("2")){
+			addressDao.setDefualt(address.getId());
+		}
 		
-	}
-	@Override
-	public void setNotDefault(String userid) {
-		// TODO Auto-generated method stub
-		addressDao.setNotDefault(userid);
 	}
 
 }

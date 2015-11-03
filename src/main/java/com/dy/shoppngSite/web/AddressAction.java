@@ -13,16 +13,8 @@ public class AddressAction {
 	String userid = ((User)ActionContext.getContext().getSession().get("user")).getId();
 	//更改默认
 	public String setDefault(){
-		
-		if(address.getIsDefault()=="1"){
-			
-			addressService.setDefualt(address.getId());
-			//addressService.setNotDefault(userid);
-			
-		}else{
-			//addressService.setDefualt(address.getId());
-			addressService.setNotDefault(userid);
-		}
+		address.setUserid(userid);
+		addressService.setDefualt(address);
 		return "oprsuc";
 	}
 	

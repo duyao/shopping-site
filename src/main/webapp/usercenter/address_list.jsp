@@ -89,10 +89,10 @@
 												<a class="blue" href="javascript:void(0)" onclick="">删除</a>|
 												<c:if test="${address.isDefault eq 1}">
 													<a class="red2"
-														href="address_setDefault?address.id=${address.id}&address.isDefault=2">取消默认</a>
+														href="address_setDefault?address.id=${address.id}&address.isDefault=1">取消默认</a>
 												</c:if> <c:if test="${address.isDefault eq 2}">
 													<a class="blue"
-														href="address_setDefault?address.id=${address.id}&address.isDefault=1">设为默认</a>
+														href="address_setDefault?address.id=${address.id}&address.isDefault=2">设为默认</a>
 												</c:if></td>
 										</tr>
 									</c:forEach>
