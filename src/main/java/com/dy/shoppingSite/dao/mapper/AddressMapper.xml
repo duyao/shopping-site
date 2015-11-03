@@ -21,5 +21,17 @@
 		select * from shop_address where userid = #{0}
 	</select>
 
+	<!-- 把默认的地址设置为非默认， 传入的是地址id-->
+	<update id="setDefualt" parameterType="string">
+		update shop_address set isDefault = '1' where id = #{0}
+	</update>
+
+	<!-- 设置为非默认的前提是，本身是默认，然后是该用户的地址 -->
+	<update id="setNotDefault" parameterType="string">
+		update shop_address set isDefault = '2' where userid = #{0} 
+		and isDefault ='1'
+	</update>
+
+
 
 </mapper>

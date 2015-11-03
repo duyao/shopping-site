@@ -10,6 +10,22 @@ import com.opensymphony.xwork2.ActionContext;
 public class AddressAction {
 	private AddressService addressService;
 	private Address address;
+	String userid = ((User)ActionContext.getContext().getSession().get("user")).getId();
+	//更改默认
+	public String setDefault(){
+		
+		if(address.getIsDefault()=="1"){
+			
+			addressService.setDefualt(address.getId());
+			//addressService.setNotDefault(userid);
+			
+		}else{
+			//addressService.setDefualt(address.getId());
+			addressService.setNotDefault(userid);
+		}
+		return "oprsuc";
+	}
+	
 	//添加地址
 	public String add(){
 		addressService.addAddress(address);
@@ -20,7 +36,7 @@ public class AddressAction {
 	private List<Address> addresses;
 	//获取地址列表
 	public String list(){
-		String userid = ((User)ActionContext.getContext().getSession().get("user")).getId();
+		//String userid = ((User)ActionContext.getContext().getSession().get("user")).getId();
 		addresses = addressService.getAddress(userid);
 		return "list";
 		
