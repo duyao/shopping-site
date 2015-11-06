@@ -36,6 +36,12 @@
 			</result>
 
 		</action>
+		
+		<action name="category_*" class="categoryAction" method="{1}">
+			<result name="oprsuc" type="redirectAction">category_list</result>
+			<result name="list">/admin/category_list.jsp</result>
+			
+		</action>
 
 	</package>
 

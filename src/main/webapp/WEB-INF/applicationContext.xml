@@ -30,7 +30,7 @@
 		scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
-	
+
 
 
 
@@ -48,6 +48,22 @@
 	</bean>
 
 
-	<bean id="randomAction" class="com.dy.shoppngSite.web.RandomAction" scope="prototype"></bean>
+	<bean id="randomAction" class="com.dy.shoppngSite.web.RandomAction"
+		scope="prototype"></bean>
 
+
+
+	<bean id="categoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dy.shoppingSite.dao.CategoryDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="categoryService" class="com.dy.shoppingSite.service.impl.CategoryServiceImpl">
+		<property name="categoryDao" ref="categoryMapper"></property>
+	</bean>
+
+	<bean id="categoryAction" class="com.dy.shoppngSite.web.CategoryAction"
+		scope="prototype">
+		<property name="categoryService" ref="categoryService"></property>
+	</bean>
 </beans>
