@@ -49,6 +49,7 @@
 							</tr>
 							<tr class="low">
 								<th></th>
+								<!-- //random对应action -->
 								<td><img src='random' id='captchaImg' /></td>
 							</tr>
 							<tr>

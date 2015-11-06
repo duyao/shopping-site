@@ -30,6 +30,7 @@
 		scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
+	
 
 
 
@@ -45,5 +46,8 @@
 		scope="prototype">
 		<property name="addressService" ref="addressService"></property>
 	</bean>
+
+
+	<bean id="randomAction" class="com.dy.shoppngSite.web.RandomAction" scope="prototype"></bean>
 
 </beans>
