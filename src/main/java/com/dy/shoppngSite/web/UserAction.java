@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
@@ -17,15 +16,16 @@ public class UserAction {
 	private UserService userService;
 	private User user;
 
-	//页面显示的用户输入验证码
+	// 页面显示的用户输入验证码
 	private String captcha;
-	//错误提示信息
+	// 错误提示信息
 	private String msg;
+
 	public String adminLogin() {
 		User u = userService.login(user.getName(), user.getPassword());
 		String vcode = ActionContext.getContext().getSession().get("vcode")
 				.toString();
-		//System.out.println(u.toString());
+		// System.out.println(u.toString());
 		if (!vcode.equals(captcha)) {
 			msg = "验证码错误";
 			return "adminlogin";
@@ -34,7 +34,7 @@ public class UserAction {
 			msg = "用户名或密码错误";
 			return "adminlogin";
 		}
-		if(!u.getRole().equals("a")){
+		if (!u.getRole().equals("a")) {
 			msg = "权限不足";
 			return "adminlogin";
 		}
@@ -44,13 +44,6 @@ public class UserAction {
 		return "adminindex";
 
 	}
-
-	// 上传头像
-	// struts2对于文件上传已经规定好了属性
-	// setX(File file),setXFileName(String fileName),setXContentType(String
-	// contentType)
-	private File avatar;
-	private String avatarFileName;
 
 	public String login() {
 		User u = userService.login(user.getName(), user.getPassword());
@@ -84,6 +77,12 @@ public class UserAction {
 		}
 	}
 
+	// 上传头像
+	// struts2对于文件上传已经规定好了属性
+	// setX(File file),setXFileName(String fileName),setXContentType(String
+	// contentType)
+	private File avatar;
+	private String avatarFileName;
 	// 上传用户头像
 	public String uploadAvatar() {
 		String userId = ((User) ActionContext.getContext().getSession()

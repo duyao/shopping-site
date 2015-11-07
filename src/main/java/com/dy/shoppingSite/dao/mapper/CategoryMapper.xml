@@ -11,5 +11,9 @@
 	<insert id="addCategory" parameterType="Category">
 		insert into shop_category values(#{id}, #{name}, #{goodsNum})
 	</insert>
+	
+	<update id="updateGoodsNum" >
+		update shop_category set goodsNum = goodsNum+#{1} where id = #{0}
+	</update>
 
 </mapper>

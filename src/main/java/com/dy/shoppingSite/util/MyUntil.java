@@ -20,4 +20,11 @@ public class MyUntil {
 		
 	}
 	
+	public static String getGoodNo(){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssms");
+		return simpleDateFormat.format(new Date());
+		
+		
+	}
+	
 }

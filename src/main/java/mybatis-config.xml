@@ -15,5 +15,6 @@
 		<mapper resource="com/dy/shoppingSite/dao/mapper/UserMapper.xml" />
 		<mapper resource="com/dy/shoppingSite/dao/mapper/AddressMapper.xml" />
 		<mapper resource="com/dy/shoppingSite/dao/mapper/CategoryMapper.xml" />
+		<mapper resource="com/dy/shoppingSite/dao/mapper/GoodsMapper.xml" />
 	</mappers>
 </configuration>

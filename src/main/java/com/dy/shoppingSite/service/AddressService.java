@@ -10,4 +10,5 @@ public interface AddressService {
 	public void addAddress(Address address);
 	public List<Address> getAddress(String userid);
 	public void setDefualt(Address address);
+	
 }

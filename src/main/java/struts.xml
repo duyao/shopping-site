@@ -42,6 +42,11 @@
 			<result name="list">/admin/category_list.jsp</result>
 			
 		</action>
+		
+		<action name="goods_*" class="goodsAction" method="{1}">
+			<result name="initadd">/admin/goods_add.jsp</result>
+			
+		</action>
 
 	</package>
 

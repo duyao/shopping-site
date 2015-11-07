@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dy.shoppingSite.dao.GoodsDao">
+	<insert id="addGoods" parameterType="Goods">
+		insert into shop_goods values
+		(#{id},#{goodsNo},#{name},#{categoryId},#{price1},#{price2},#{stock},#{thumbnail},#{description})
+	</insert>
+
+
+
+
+</mapper>

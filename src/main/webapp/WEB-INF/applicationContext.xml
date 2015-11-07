@@ -66,4 +66,21 @@
 		scope="prototype">
 		<property name="categoryService" ref="categoryService"></property>
 	</bean>
+	
+	
+	<bean id="goodsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dy.shoppingSite.dao.GoodsDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="goodsService" class="com.dy.shoppingSite.service.impl.GoodsServiceImpl">
+		<property name="categoryService" ref="categoryService"></property>
+		<property name="goodsDao" ref="goodsMapper"></property>
+		<property name="categoryDao" ref="categoryMapper"></property>
+	</bean>
+
+	<bean id="goodsAction" class="com.dy.shoppngSite.web.GoodsAction"
+		scope="prototype">
+		<property name="goodsService" ref="goodsService"></property>
+	</bean>
 </beans>
