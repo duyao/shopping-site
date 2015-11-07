@@ -14,7 +14,7 @@
 		$("#form1").submit();
 	}
 	$(function(){
-		$("#category").val("${goods.category.id}");
+		$("#category").val("${goods.categoryId}");
 		$("#name").val("${goods.name}");
 	});
 </script>
@@ -34,9 +34,9 @@
 		<div id="admin_right">
 			<div class="headbar">
 				<div class="searchbar">
-					<form action="goods_listByPage" method="get" id="form1"'>
+					<form action="goods_list" method="post" id="form1"'>
 						<input type="hidden" name="page" id="page" /> <select
-							class="auto" name="goods.category.id" id="category">
+							class="auto" name="goods.categoryId" id="category">
 							<option value="">选择分类</option>
 							<c:forEach items="${categories}" var="category">
 								<option value="${category.id}">${category.name}</option>
@@ -80,7 +80,7 @@
 						<col width="70px" />
 						<col width="70px" />
 						<tbody>
-							<c:forEach items="${pageBean.data}" var="goods">
+							<c:forEach items="${goodses}" var="goods">
 								<tr>
 									<td><input name="" type="checkbox" value="1" /></td>
 									<td><a href="" target="_blank" title="${goods.name}">${goods.name}</a></td>

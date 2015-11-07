@@ -45,7 +45,8 @@
 		
 		<action name="goods_*" class="goodsAction" method="{1}">
 			<result name="initadd">/admin/goods_add.jsp</result>
-			
+			<result name="list">/admin/goods_list.jsp</result>
+			<result name="addsuc" type="redirectAction">goods_initadd</result>
 		</action>
 
 	</package>

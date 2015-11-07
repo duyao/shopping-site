@@ -48,4 +48,11 @@ public class GoodsServiceImpl implements GoodsService {
 	public void setCategoryDao(CategoryDao categoryDao) {
 		this.categoryDao = categoryDao;
 	}
+	
+	
+	@Override
+	public List<Goods> getGoodses(Goods goods) {
+		// TODO Auto-generated method stub
+		return goodsDao.getGoodses(goods);
+	}
 }

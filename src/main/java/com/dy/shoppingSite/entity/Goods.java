@@ -12,6 +12,8 @@ public class Goods {
 	private String thumbnail;
 	private String description;
 	
+	//一对多映射
+	private Category category;
 	
 	public String getId() {
 		return id;
@@ -68,6 +70,12 @@ public class Goods {
 	}
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 

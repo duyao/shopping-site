@@ -209,7 +209,7 @@
 			<version>4.2.2.RELEASE</version>
 		</dependency>
 
-
+		<!-- 事务 -->
 		<dependency>
 			<groupId>aopalliance</groupId>
 			<artifactId>aopalliance</artifactId>

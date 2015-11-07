@@ -17,6 +17,14 @@ import com.opensymphony.xwork2.ActionContext;
 public class GoodsAction {
 	private GoodsService goodsService;
 	private Goods goods;
+	
+	//显示页面的所有商品
+	private List<Goods> goodses;
+	public String list(){
+		categories = goodsService.getCategories();
+		goodses = goodsService.getGoodses(goods);
+		return "list";
+	}
 
 	// 类型的列表，显示在添加中的下拉菜单
 	private List<Category> categories;
@@ -61,7 +69,7 @@ public class GoodsAction {
 		}
 		
 		goodsService.addGoods(goods);
-		return "oprsuc";
+		return "addsuc";
 		
 	}
 
@@ -111,6 +119,14 @@ public class GoodsAction {
 
 	public void setGoods(Goods goods) {
 		this.goods = goods;
+	}
+
+	public List<Goods> getGoodses() {
+		return goodses;
+	}
+
+	public void setGoodses(List<Goods> goodses) {
+		this.goodses = goodses;
 	}
 
 }
