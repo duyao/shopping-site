@@ -7,16 +7,32 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
+import com.dy.shoppingSite.dao.PageBean;
 import com.dy.shoppingSite.entity.Category;
 import com.dy.shoppingSite.entity.Goods;
-import com.dy.shoppingSite.entity.User;
 import com.dy.shoppingSite.service.GoodsService;
 import com.dy.shoppingSite.util.MyUntil;
-import com.opensymphony.xwork2.ActionContext;
 
 public class GoodsAction {
 	private GoodsService goodsService;
 	private Goods goods;
+	
+	//用于分页显示内容
+	private PageBean<Goods> pageBean;
+	//由前端给出的显示要查询的页数,分页就靠这个page
+	private int page;
+	public  String listGoodsByPage(){
+		//goods信息返回页面，是为了显示查询条件
+		categories = goodsService.getCategories();
+		if(page == 0){
+			page = 1;
+		}
+				
+		pageBean = goodsService.listGoodsByPage(goods, page);
+		
+		return "list";
+		
+	}
 	
 	//显示页面的所有商品
 	private List<Goods> goodses;
@@ -127,6 +143,22 @@ public class GoodsAction {
 
 	public void setGoodses(List<Goods> goodses) {
 		this.goodses = goodses;
+	}
+
+	public PageBean<Goods> getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean<Goods> pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 }

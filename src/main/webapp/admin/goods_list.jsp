@@ -34,9 +34,12 @@
 		<div id="admin_right">
 			<div class="headbar">
 				<div class="searchbar">
-					<form action="goods_list" method="post" id="form1"'>
-						<input type="hidden" name="page" id="page" /> <select
-							class="auto" name="goods.categoryId" id="category">
+				<!-- //为了解决 将搜索内容和page都传到后台-->
+					<form action="goods_listGoodsByPage" method="post" id="form1"'>
+						<!-- 因此添加hidden属性将page和goods一起传到后台,在jquery中goPage实现的 -->
+						<!-- name是传到后台的属性名，id是jquery中使用的属性名 -->
+						<input type="hidden" name="page" id="page" /> 
+						<select class="auto" name="goods.categoryId" id="category">
 							<option value="">选择分类</option>
 							<c:forEach items="${categories}" var="category">
 								<option value="${category.id}">${category.name}</option>
@@ -80,7 +83,7 @@
 						<col width="70px" />
 						<col width="70px" />
 						<tbody>
-							<c:forEach items="${goodses}" var="goods">
+							<c:forEach items="${pageBean.data}" var="goods">
 								<tr>
 									<td><input name="" type="checkbox" value="1" /></td>
 									<td><a href="" target="_blank" title="${goods.name}">${goods.name}</a></td>

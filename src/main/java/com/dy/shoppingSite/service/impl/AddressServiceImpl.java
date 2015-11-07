@@ -3,8 +3,6 @@ package com.dy.shoppingSite.service.impl;
 import java.util.List;
 
 import com.dy.shoppingSite.dao.AddressDao;
-import com.dy.shoppingSite.dao.CategoryDao;
-import com.dy.shoppingSite.dao.UserDao;
 import com.dy.shoppingSite.entity.Address;
 import com.dy.shoppingSite.entity.User;
 import com.dy.shoppingSite.service.AddressService;

@@ -1,9 +1,11 @@
 package com.dy.shoppingSite.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.dy.shoppingSite.dao.CategoryDao;
 import com.dy.shoppingSite.dao.GoodsDao;
+import com.dy.shoppingSite.dao.PageBean;
 import com.dy.shoppingSite.entity.Category;
 import com.dy.shoppingSite.entity.Goods;
 import com.dy.shoppingSite.service.CategoryService;
@@ -54,5 +56,33 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<Goods> getGoodses(Goods goods) {
 		// TODO Auto-generated method stub
 		return goodsDao.getGoodses(goods);
+	}
+	
+	//通过分页查询
+	@Override
+	public PageBean<Goods> listGoodsByPage(Goods goods, int page) {
+		// TODO Auto-generated method stub
+		//设定好每页显示多少条
+		int pageSize = 3;
+		HashMap< String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("goods", goods);
+		//limit a,b,a是该页第一条-1，b是该页显示几条
+		//mysql查询的两个参数，一个是pageSize
+		hashMap.put("pageSize", pageSize);
+		//mysql查询的两个参数，另一个是序号，这里设置为
+		int pageNo = (page- 1)*pageSize;
+		hashMap.put("pageNo", pageNo);
+		
+		//将pageBean的内容封装好
+		PageBean<Goods> pageBean = new PageBean<Goods>();
+		pageBean.setData(goodsDao.listGoodsByPage(hashMap));
+		pageBean.setPage(page);
+		pageBean.setPageSize(pageSize);
+		pageBean.setPageNo(pageNo);
+		int totalNum = goodsDao.getTotalNum(goods);
+		pageBean.setTotalNum(totalNum);
+		int totalPage = totalNum % pageSize == 0? totalNum/pageSize: (totalNum/pageSize + 1);
+		pageBean.setTotalPage(totalPage);
+		return pageBean;
 	}
 }

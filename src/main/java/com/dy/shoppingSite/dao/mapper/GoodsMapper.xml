@@ -24,17 +24,18 @@
 		</association>
 	</resultMap>
 
-	<select id="getGoodses" resultMap="GoodsResultMap" parameterType="Goods">
+	<select id="getGoodses" resultMap="GoodsResultMap"
+		parameterType="Goods">
 		<!-- 这里给c.name使用别名cname，因为g中也name列，会重复 -->
 		select g.*, c.name cname from shop_goods g, shop_category c where
 		g.categoryId = c.id
-		<!-- 有parameterType的情况下，查询时不需要加所属名字的，比如goods.name -->
+		<!-- parameterType单一的情况下，就是只有goods或者只有string，(不是hashmap或者list等)， 查询时不需要加所属名字的，比如goods.name -->
 		<if test="categoryId != null and categoryId!= '' ">
 			and g.categoryId = #{categoryId}
 		</if>
 		<if test="name != null and name != '' ">
-		<!-- 模糊查询，1.要用bind 将查询的东西与页面的显示联系起来 -->
-		<bind name="name" value="'%' + name + '%'" />
+			<!-- 模糊查询，1.要用bind 将查询的东西与页面的显示联系起来 -->
+			<bind name="name" value="'%' + name + '%'" />
 			<!-- 模糊查询，2.like关键字模糊查询 -->
 			and g.name like #{name}
 		</if>
@@ -46,6 +47,47 @@
 		(#{id},#{goodsNo},#{name},#{categoryId},#{price1},#{price2},#{stock},#{thumbnail},#{description})
 	</insert>
 
+
+	<select id="listGoodsByPage" parameterType="hashmap" resultMap="GoodsResultMap">
+
+		select g.*, c.name cname from shop_goods g, shop_category c
+		where
+		g.categoryId = c.id
+		<!--  一定要判断goods是否为空，否则会报错
+		source is null for getProperty(null, "categoryId") -->
+		<if test="goods != null"> 
+			<!-- parameterType为hashmap的情况下，查询时一定要加key的名字，比如goods.name -->
+			<if test="goods.categoryId != null and goods.categoryId!= '' ">
+				and g.categoryId = #{goods.categoryId}
+			</if>
+			<!-- 这里要指出key值，因为hashmap中放了多个值，比如goods.name -->
+			<if test="goods.name != null and goods.name != '' ">
+				<!-- 模糊查询，1.要用bind 将查询的东西与页面的显示联系起来 -->
+				<bind name="goods.name" value="'%' + goods.name + '%'" />
+				<!-- 模糊查询，2.like关键字模糊查询 -->
+				and g.name like #{goods.name}
+			</if>
+		</if> 
+		ORDER BY id LIMIT #{pageNo}, #{pageSize}
+
+	</select>
+
+
+	<select id="getTotalNum" parameterType="Goods" resultType="int">
+		<!-- 这里给c.name使用别名cname，因为g中也name列，会重复 -->
+		select count(*) from shop_goods g, shop_category c where g.categoryId
+		= c.id
+		<!-- parameterType单一的情况下，就是只有goods或者只有string，(不是hashmap或者list等)， 查询时不需要加所属名字的，比如goods.name -->
+		<if test="categoryId != null and categoryId!= '' ">
+			and g.categoryId = #{categoryId}
+		</if>
+		<if test="name != null and name != '' ">
+			<!-- 模糊查询，1.要用bind 将查询的东西与页面的显示联系起来 -->
+			<bind name="name" value="'%' + name + '%'" />
+			<!-- 模糊查询，2.like关键字模糊查询 -->
+			and g.name like #{name}
+		</if>
+	</select>
 
 
 
