@@ -14,5 +14,7 @@ public interface GoodsService {
 	public PageBean<Goods> listGoodsByPage(Goods goods,int page);
 	public void updateGoods(Goods goods);
 	public Goods getGoodsById(String id);
-	public void delGoods(String id); 
+	public void delGoods(String id);
+	
+	public List<Goods> getGoodsByCateId(String categoryId);
 }

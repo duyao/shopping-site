@@ -17,6 +17,16 @@ public class GoodsAction {
 	private GoodsService goodsService;
 	private Goods goods;
 	
+	public String view(){
+		goods = goodsService.getGoodsById(goods.getId());
+		return "view";
+	}
+	
+	public String listByCate(){
+		goodses = goodsService.getGoodsByCateId(goods.getCategoryId());
+		return "listByCate";
+	}
+	
 	public String del(){
 		goodsService.delGoods(goods.getId());
 		return "delsuc";

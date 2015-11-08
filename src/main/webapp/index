@@ -1,0 +1,8 @@
+这个文件是这样存在的。
+<welcome-file-list>
+	<welcome-file>index</welcome-file>
+</welcome-file-list>
+首先，通过web.xml启动项目， 然后找到welcome-file，
+进入IndexAction，启动项目
+
+该文件内容是什么不重要，没有此文件，就会出现404

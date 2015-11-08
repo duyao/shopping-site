@@ -15,7 +15,7 @@
 			<result name="usercenter">/usercenter/index.jsp</result>
 			<result name="adminlogin">/admin/login.jsp</result>
 			<result name="adminindex">/admin/index.jsp</result>
-			
+
 
 
 		</action>
@@ -26,23 +26,23 @@
 		</action>
 
 		<action name="random" class="randomAction">
-		<!-- stream用于传送文件或者图片等 -->
+			<!-- stream用于传送文件或者图片等 -->
 			<result type="stream">
-			<!-- https://struts.apache.org/docs/stream-result.html -->
-			<!-- 这些属性都是struts提前定义好的 -->
+				<!-- https://struts.apache.org/docs/stream-result.html -->
+				<!-- 这些属性都是struts提前定义好的 -->
 				<param name="contentType">image/jpeg</param>
 				<!-- 在randomAction中已经定义 -->
 				<param name="inputName">image</param>
 			</result>
 
 		</action>
-		
+
 		<action name="category_*" class="categoryAction" method="{1}">
 			<result name="oprsuc" type="redirectAction">category_list</result>
 			<result name="list">/admin/category_list.jsp</result>
-			
+
 		</action>
-		
+
 		<action name="goods_*" class="goodsAction" method="{1}">
 			<result name="initadd">/admin/goods_add.jsp</result>
 			<result name="list">/admin/goods_list.jsp</result>
@@ -50,6 +50,12 @@
 			<result name="update">/admin/goods_update.jsp</result>
 			<result name="upsuc" type="redirectAction">goods_listGoodsByPage</result>
 			<result name="delsuc" type="redirectAction">goods_listGoodsByPage</result>
+			<result name="listByCate">/goods_list.jsp</result>
+			<result name="view">/goods_view.jsp</result>
+		</action>
+
+		<action name="index" class="indexAction">
+			<result name="index">/index.jsp</result>
 		</action>
 
 	</package>

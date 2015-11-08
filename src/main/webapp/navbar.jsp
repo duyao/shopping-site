@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$(function() {
 		$('.mycart').hover(function() {
@@ -10,8 +11,10 @@
 </script>
 <div class="navbar">
 	<ul>
-		<li><a href="">首页</a></li>
-		<li><a href="">手机<span> </span></a></li>
+		<c:forEach items="${categories}" var="category">
+				<li><a href="goods_listByCate?goods.categoryId=${category.id }">${category.name}</a></li>
+		</c:forEach>
+		
 	</ul>
 
 	<div class="mycart">

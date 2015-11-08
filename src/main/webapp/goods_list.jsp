@@ -28,10 +28,9 @@
 					<div class="content">
 						<ul class="ranklist" id='ranklist'>
 							<c:forEach begin="1" end="10">
-								<li><span>1</span> <a href=""><img src="" width="60"
-										height="60" alt="" /></a> <a
-									title="苹果（Apple）iPhone 6 (A1586) 64GB" class="p_name" href="">苹果（Apple）iPhone
-										6 (A1586) 64GB</a><b>￥5688.00</b></li>
+								<li><span>1</span> <a href=""><img src=""
+										width="60" height="60" alt="" /></a> <a title="苹果（Apple）iPhone 6 (A1586) 64GB"
+									class="p_name" href="">苹果（Apple）iPhone 6 (A1586) 64GB</a><b>￥5688.00</b></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -57,17 +56,15 @@
 				</div>
 
 				<ul class="display_list clearfix m_10">
-					<c:forEach begin="1" end="6">
+					<c:forEach items="${goodses}" var="goods">
 						<li class="clearfix win">
 							<div class="pic">
-								<a title="苹果（Apple）iPhone 6 (A1586) 64GB" href="goods_view.jsp"><img
-									src="images/goods/apple.jpg" width="200" height="200"
-									alt="苹果（Apple）iPhone 6 (A1586) 64GB"
-									title="苹果（Apple）iPhone 6 (A1586) 64GB" /></a>
+								<a title="${goods.name }" href="goods_view?goods.id=${goods.id }"><img
+									src="${goods.thumbnail }" width="200" height="200" alt="${goods.name }"
+									title="${goods.name }" /></a>
 							</div>
 							<h3 class="title">
-								<a title="苹果（Apple）iPhone 6 (A1586) 64GB" class="p_name"
-									href="goods_view.jsp">苹果（Apple）iPhone 6 (A1586) 64GB</a><span>总销量：10<a
+								<a title="${goods.name }" class="p_name" href="goods_view?goods.id=${goods.id }">${goods.name }</a><span>总销量：10<a
 									class="blue" href="">( 0人评论 )</a></span><span class='grade'><i
 									style='width:0px'></i></span>
 							</h3>
@@ -84,7 +81,7 @@
 								</div>
 							</div>
 							<div class="price">
-								￥6088.00<s>￥7100.00</s>
+								￥${goods.price2 }<s>￥${goods.price1 }</s>
 							</div>
 						</li>
 					</c:forEach>

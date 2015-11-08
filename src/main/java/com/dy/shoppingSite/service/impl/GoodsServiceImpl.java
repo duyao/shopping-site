@@ -119,6 +119,13 @@ public class GoodsServiceImpl implements GoodsService {
 		// TODO Auto-generated method stub
 		goodsDao.delGoods(id);
 	}
+	@Override
+	public List<Goods> getGoodsByCateId(String categoryId) {
+		// TODO Auto-generated method stub
+		//每页显示6条商品
+		return goodsDao.getGoodsByCateId(categoryId, 6);
+	}
+	
 	
 	
 }

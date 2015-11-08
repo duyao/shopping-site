@@ -104,6 +104,8 @@
 		delete from shop_goods where id = #{id}
 	</delete>
 
-
+	<select id="getGoodsByCateId" resultType="Goods">
+		select * from shop_goods WHERE categoryId = #{0} LIMIT #{1}
+	</select>
 
 </mapper>

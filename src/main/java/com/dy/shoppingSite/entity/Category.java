@@ -1,9 +1,12 @@
 package com.dy.shoppingSite.entity;
 
+import java.util.List;
+
 public class Category {
 	private String id;
 	private String name;
 	private int goodsNum;
+	private List<Goods> goodses;
 	public String getId() {
 		return id;
 	}
@@ -21,6 +24,12 @@ public class Category {
 	}
 	public void setGoodsNum(int goodsNum) {
 		this.goodsNum = goodsNum;
+	}
+	public List<Goods> getGoodses() {
+		return goodses;
+	}
+	public void setGoodses(List<Goods> goodses) {
+		this.goodses = goodses;
 	}
 	
 	

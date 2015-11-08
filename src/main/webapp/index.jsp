@@ -56,7 +56,7 @@
 				<table id="index_category" class="sort_table m_10" width="100%">
 					<tr>
 						<td><c:forEach items="${categories}" var="category">
-								<a href="goods_list.jsp">${category.name}</a>|
+								<a href="goods_listByCate?goods.categoryId=${category.id }">${category.name}(${category.goodsNum })</a>|
 							</c:forEach></td>
 					</tr>
 				</table>
@@ -94,19 +94,19 @@
 					<div class="box m_10 green" name="showGoods">
 						<div class="title title3">
 							<h2>
-								<a href=""><strong>${category.name}</strong></a>
+								<a href="goods_listByCate?goods.categoryId=${category.id }"><strong>${category.name}</strong></a>
 							</h2>
-							<a class="more" href="">更多商品...</a>
+							<a class="more" href="goods_listByCate?goods.categoryId=${category.id }">更多商品...</a>
 						</div>
 
 						<div class="cont clearfix">
 							<ul class="prolist">
 								<c:forEach items="${category.goodses}" var="goods">
-									<li style="overflow:hidden"><a href=""><img
-											src="${goods.thumbnail}" width="175" height="175" alt=""
+									<li style="overflow:hidden"><a href="goods_view?goods.id=${goods.id }">
+									<img src="${goods.thumbnail}" width="150" height="150" alt=""
 											title=""></a>
 										<p class="pro_title">
-											<a title="" href="">${goods.name}</a>
+											<a title="${goods.name}" href="goods_view?goods.id=${goods.id }">${goods.name}</a>
 										</p>
 										<p class="brown">
 											惊喜价：<b>￥${goods.price2}</b>
