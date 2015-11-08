@@ -77,6 +77,14 @@ public class Goods {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	@Override
+	public String toString() {
+		return "Goods [id=" + id + ", goodsNo=" + goodsNo + ", name=" + name
+				+ ", categoryId=" + categoryId + ", price1=" + price1
+				+ ", price2=" + price2 + ", stock=" + stock + ", thumbnail="
+				+ thumbnail + ", description=" + description + ", category="
+				+ category + "]";
+	}
 
 
 }

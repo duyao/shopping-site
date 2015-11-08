@@ -47,6 +47,8 @@
 			<result name="initadd">/admin/goods_add.jsp</result>
 			<result name="list">/admin/goods_list.jsp</result>
 			<result name="addsuc" type="redirectAction">goods_initadd</result>
+			<result name="update">/admin/goods_update.jsp</result>
+			<result name="upsuc" type="redirectAction">goods_listGoodsByPage</result>
 		</action>
 
 	</package>

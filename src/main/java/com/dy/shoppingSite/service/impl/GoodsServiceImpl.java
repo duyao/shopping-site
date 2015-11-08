@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.dy.shoppingSite.dao.CategoryDao;
 import com.dy.shoppingSite.dao.GoodsDao;
-import com.dy.shoppingSite.dao.PageBean;
 import com.dy.shoppingSite.entity.Category;
 import com.dy.shoppingSite.entity.Goods;
+import com.dy.shoppingSite.entity.PageBean;
 import com.dy.shoppingSite.service.CategoryService;
 import com.dy.shoppingSite.service.GoodsService;
 import com.dy.shoppingSite.util.MyUntil;
@@ -84,5 +84,33 @@ public class GoodsServiceImpl implements GoodsService {
 		int totalPage = totalNum % pageSize == 0? totalNum/pageSize: (totalNum/pageSize + 1);
 		pageBean.setTotalPage(totalPage);
 		return pageBean;
+	}
+	
+	@Override
+	public void updateGoods(Goods goods) {
+		// TODO Auto-generated method stub
+		//这里更新要先将beforeGoods拿来，然后把新的goods中属性付给beforeGoods
+		//因为goods中不一定所有属性都进行更新，会产生空值，导致出错
+		Goods beforeGoods = goodsDao.getGoodsById(goods.getId());
+		beforeGoods.setCategory(goods.getCategory());
+		beforeGoods.setCategoryId(goods.getCategoryId());
+		beforeGoods.setDescription(goods.getDescription());
+		beforeGoods.setGoodsNo(goods.getGoodsNo());
+		beforeGoods.setName(goods.getName());
+		beforeGoods.setPrice1(goods.getPrice1());	
+		beforeGoods.setPrice2(goods.getPrice2());
+		beforeGoods.setStock(goods.getStock());
+		beforeGoods.setThumbnail(goods.getThumbnail());
+		
+		goodsDao.updateGoods(beforeGoods);
+		
+
+		
+		
+	}
+	@Override
+	public Goods getGoodsById(String id) {
+		// TODO Auto-generated method stub
+		return goodsDao.getGoodsById(id);
 	}
 }

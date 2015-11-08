@@ -31,7 +31,7 @@
 				<div class="content form_content">
 					<form action="goods_update" method="post"
 						enctype="multipart/form-data">
-						<input type="text" name="id" value="${goods.id}">
+						<input type="hidden" name="goods.id" value="${goods.id}">
 						<div id="table_box_1">
 							<table class="form_table">
 								<colgroup>
@@ -46,7 +46,7 @@
 									</tr>
 									<tr>
 										<th>所属分类：</th>
-										<td><select name="goods.category.id" id="category">
+										<td><select name="goods.categoryId" id="category">
 												<c:forEach items="${categories}" var="category">
 													<option value="${category.id}">${category.name}</option>
 												</c:forEach>
@@ -68,7 +68,7 @@
 													<tbody id="goodsBaseBody">
 														<tr class="td_c">
 															<td><input class="small" name="goods.goodsNo"
-																type="text" value="${goods.goodsNo}" /></td>
+																type="text" value="${goods.goodsNo}" readonly="readonly"/></td>
 															<td><input class="tiny" name="goods.stock"
 																type="text" value="${goods.stock}" /></td>
 															<td><input class="tiny" name="goods.price1"
@@ -83,8 +83,9 @@
 									</tr>
 									<tr>
 										<th>缩略图：</th>
-										<td><img src="${goods.thumbnail}"><input
-											type="file" name="thumbnail" /></td>
+										<td><input type="hidden" name="goods.thumbnail" value="${goods.thumbnail}"/> 
+										<img src="${goods.thumbnail}" width="250" height="200">
+										<input type="file" name="thumbnail" /></td>
 									</tr>
 									<tr>
 										<th>产品描述：</th>

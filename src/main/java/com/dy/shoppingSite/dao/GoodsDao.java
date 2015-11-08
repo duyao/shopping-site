@@ -15,4 +15,8 @@ public interface GoodsDao {
 	public List<Goods> listGoodsByPage(HashMap<String, Object> hashMap);
 	//得到总条数
 	public int getTotalNum(Goods goods);
+	
+	public void updateGoods(Goods goods);
+	
+	public Goods getGoodsById(String id);
 }

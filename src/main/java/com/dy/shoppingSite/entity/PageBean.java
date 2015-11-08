@@ -1,4 +1,4 @@
-package com.dy.shoppingSite.dao;
+package com.dy.shoppingSite.entity;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ public class PageBean<T> {
 	private List<T> data;
 	//设置每页显示多少条，固定的
 	private int pageSize;
-	//当前页的记录的标号
+	//当前页的记录的标号，mysql中的参数
 	private int pageNo;
 	//总页数
 	private int totalPage;
