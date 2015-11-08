@@ -17,6 +17,11 @@
 		$("#category").val("${goods.categoryId}");
 		$("#name").val("${goods.name}");
 	});
+	function delGoods(id){
+		if(confirm("您确定要删除所选的商品吗？")){
+			location.href="goods_del?goods.id="+id;
+		}
+	}
 </script>
 </head>
 <body>
@@ -92,7 +97,7 @@
 									<td>${goods.stock}</td>
 									<td><a href="goods_initUpdate?goods.id=${goods.id}"><img
 											class="operator" src="images/admin/icon_edit.gif" alt="编辑" /></a>
-										<a href="javascript:void(0)" onclick=""><img
+										<a href="javascript:void(0)" onclick="delGoods('${goods.id}')"><img
 											class="operator" src="images/admin/icon_del.gif" alt="删除" /></a></td>
 								</tr>
 							</c:forEach>

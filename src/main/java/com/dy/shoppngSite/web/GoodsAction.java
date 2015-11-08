@@ -16,6 +16,11 @@ import com.dy.shoppingSite.util.MyUntil;
 public class GoodsAction {
 	private GoodsService goodsService;
 	private Goods goods;
+	
+	public String del(){
+		goodsService.delGoods(goods.getId());
+		return "delsuc";
+	}
 
 	public String update() {
 		//用户传入了新的图片

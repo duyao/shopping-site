@@ -19,4 +19,6 @@ public interface GoodsDao {
 	public void updateGoods(Goods goods);
 	
 	public Goods getGoodsById(String id);
+	
+	public void delGoods(String id); 
 }

@@ -113,4 +113,12 @@ public class GoodsServiceImpl implements GoodsService {
 		// TODO Auto-generated method stub
 		return goodsDao.getGoodsById(id);
 	}
+	
+	@Override
+	public void delGoods(String id) {
+		// TODO Auto-generated method stub
+		goodsDao.delGoods(id);
+	}
+	
+	
 }

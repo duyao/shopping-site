@@ -99,6 +99,10 @@
 	<select id="getGoodsById" parameterType="string" resultType="Goods">
 		select * from shop_goods where id = #{id}
 	</select>
+	
+	<delete id="delGoods" parameterType="string">
+		delete from shop_goods where id = #{id}
+	</delete>
 
 
 
