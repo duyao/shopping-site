@@ -14,7 +14,7 @@
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="regsuc">/login.jsp </result>
 			<result name="loginfail">/login.jsp </result>
-			<result name="loginsuc">/index.jsp </result>
+			<result name="loginsuc" type="redirectAction">index </result>
 			<result name="logout">/login.jsp </result>
 			<result name="usercenter">/usercenter/index.jsp</result>
 			<result name="adminlogin">/admin/login.jsp</result>
@@ -64,6 +64,12 @@
 
 		<action name="index" class="indexAction">
 			<result name="index">/index.jsp</result>
+		</action>
+		
+		<action name="order_*" class="orderAction" method="{1}">
+			<result name="add">order_add.jsp</result>
+			<result name="submit">order_submit.jsp</result>
+			<result name="login">/login.jsp</result>
 		</action>
 
 	</package>

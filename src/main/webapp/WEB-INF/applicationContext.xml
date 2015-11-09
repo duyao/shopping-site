@@ -119,4 +119,28 @@
 	<bean id="indexAction" class="com.dy.shoppngSite.web.IndexAction">
 		<property name="categoryService" ref="categoryService"></property>
 	</bean>
+	
+	<bean id="orderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dy.shoppingSite.dao.OrderDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="orderDetailMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dy.shoppingSite.dao.OrderDetailDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="orderService" class="com.dy.shoppingSite.service.impl.OrderServiceImpl">
+		<property name="orderDao" ref="orderMapper"></property>
+		<property name="orderDetailDao" ref="orderDetailMapper"></property>
+	</bean>
+
+	<bean id="orderAction" class="com.dy.shoppngSite.web.OrderAction"
+		scope="prototype">
+		<property name="addressService" ref="addressService"></property>
+		<property name="goodsService" ref="goodsService"></property>
+		<property name="orderService" ref="orderService"></property>
+	</bean>
+	
+	
+	
 </beans>

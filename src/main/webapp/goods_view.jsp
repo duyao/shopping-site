@@ -63,7 +63,7 @@
 
 
 	function order_add() {
-		location.href = "order_add?orderDetails[0].goods.id=${goods.id}&orderDetails[0].nums="+$("buyNums").val;
+		location.href = "order_add?orderDetails[0].goodsId=${goods.id}&orderDetails[0].nums="+$("#buyNums").val();
 	}
 	
 	//加入购物车
@@ -112,7 +112,7 @@
 
 					<div class="shop_cart" style="z-index:1">
 						<input class="submit_join" type="button" id="joinCarButton"
-							onclick="joinCart();" value="加入购物车" />
+							onclick="joinCart()" value="加入购物车" />
 
 						<div class="shopping" id="product_myCart" style='display:none'>
 							<dl class="cart_stats">

@@ -42,19 +42,19 @@
 							<tbody>
 								<tr>
 									<th>订单编号：</th>
-									<td class="f18 bold red2">20140712144025249304</td>
+									<td class="f18 bold red2">${order.id }</td>
 								</tr>
 								<tr>
 									<th>订单金额：</th>
-									<td class="f18 bold red2">￥<b>5800</b></td>
+									<td class="f18 bold red2">￥<b>${order.totalMoney }</b></td>
 								</tr>
 								<tr>
 									<th>支付方式：</th>
-									<td class="f18 bold red2">预存款支付</td>
+									<td class="f18 bold red2">${order.payType }</td>
 								</tr>
 								<tr>
 									<th>配送方式：</th>
-									<td class="f18 bold red2">快递</td>
+									<td class="f18 bold red2">${order.deliveryType }</td>
 								</tr>
 							</tbody>
 						</table>
@@ -68,15 +68,15 @@
 								<tbody>
 									<tr>
 										<td class="t_r">收货人姓名：</td>
-										<td>谭岚</td>
+										<td>${address.accepter }</td>
 									</tr>
 									<tr>
 										<td class="t_r">联系方式：</td>
-										<td>15982352915</td>
+										<td>${address.phoneNum }</td>
 									</tr>
 									<tr>
 										<td class="t_r">收货时间：</td>
-										<td>任意</td>
+										<td>${order.deliveryTime }</td>
 									</tr>
 								</tbody>
 							</table>

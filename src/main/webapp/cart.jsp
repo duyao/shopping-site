@@ -10,7 +10,7 @@
 <jsp:include page="base.jsp" />
 <script type="text/javascript">
 	function finish() {
-		location.href = "order_add.jsp";
+		$("#form1").submit();
 	}
 	$(function(){
 	//得到cooki中的物品，转为json格式
@@ -26,7 +26,7 @@
 		params+="\"}";
 		//发送ajax请求
 		$.getJSON("goods_getGoodsesByIds",JSON.parse(params),function(r){
-			alert(r);
+			//alert(r);
 			 var json=JSON.parse(r);
 		 var totalMoney=0;
 		 for(var i=0;i<json.length;i++){
@@ -44,11 +44,10 @@
 </script>
 <script id="goodsTemplate" type="text/plain">
 <tr>
-	<td><input type="hidden" name="orderDetails[{{index}}].goods.id" value="{{id}}"><img src="{{thumbnail}}" width="66px"
+	<td><input type="hidden" name="orderDetails[{{index}}].goodsId" value="{{id}}"><img src="{{thumbnail}}" width="66px"
 		height="66px" alt="{{name}}"
 		title="{{name}}" /></td>
-	<td class="t_l"><a href="" class="blue">苹果（Apple）iPhone 6
-			(A1586) 64GB</a></td>
+	<td class="t_l"><a href="goods_view?goods.id={{id }}" class="blue">{{name}}</a></td>
 	<td>￥<b>{{price2}}</b></td>
 	<td>
 		<div class="num">
@@ -76,7 +75,7 @@
 					<li class="last"><span>3、成功提交订单</span></li>
 				</ul>
 			</div>
-<form action="" id="form1">
+<form action="order_add" id="form1">
 			<table width="100%" class="cart_table m_10">
 				<col width="115px" />
 				<col width="400px" />
@@ -99,13 +98,13 @@
 				
 
 					<tr class="stats">
-						<td colspan="8">金额总计（不含运费）：￥<b class="orange" id='sum_price'>1000</b></td>
+						<td colspan="8">金额总计（不含运费）：<b class="orange" id='sum_price'></b></td>
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
 						<td colspan="2" class="t_l"></td>
-						<td colspan="6" class="t_r"><a class="btn_continue" href="">继续购物</a>
+						<td colspan="6" class="t_r"><a class="btn_continue" href="index">继续购物</a>
 							<a class="btn_pay" href="javascript:finish();">去结算</a></td>
 					</tr>
 				</tfoot>

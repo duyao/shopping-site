@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +24,9 @@
 				</ul>
 			</div>
 
-			<form action='order_submit.jsp' method='post' name='order_form'>
+			<form action='order_submit' method='post' name='order_form'>
 
-				<input type='hidden' name='opr' value='add' /> <input type='hidden'
-					name='totalmoney' value='${goods.price2*nums}' />
+				
 
 				<div class="cart_box m_10">
 					<div class="title">填写核对订单信息</div>
@@ -42,12 +41,11 @@
 							<div class="prompt_4 m_10" id='address_often'>
 								<strong>常用收货地址</strong>
 								<ul class="addr_list">
-									<li><label><input class="radio" name="addressid"
-											checked type="radio" value="" />谭岚&nbsp;&nbsp;&nbsp;&nbsp;四川省
-											成都市 青羊区 石人西路1号 </label></li>
-									<li><label><input class="radio" name="addressid"
-											type="radio" value="" />晨晨&nbsp;&nbsp;&nbsp;&nbsp;广东省 江门市
-											市辖区 天山路39号 </label></li>
+								<c:forEach items="${addresses}" var="address">
+									<li><label><input class="radio" name="order.addressId" 
+											<c:if test="${address.isDefault eq 1}"> checked="checked" </c:if>  type="radio" value="${address.id }" />${address.accepter}&nbsp;&nbsp;&nbsp;&nbsp;${address.province}
+											${address.city} ${address.area} ${address.address} </label></li>
+								</c:forEach>	
 								</ul>
 							</div>
 						</div>
@@ -65,24 +63,24 @@
 								</colgroup>
 								<tbody id="deliveryFormTrBox">
 									<tr>
-										<th><label><input type="radio" name="delivery_id"
-												paytype="0" alt="20.00" value="1">快递</label></th>
+										<th><label><input type="radio" name="order.deliveryType"
+										checked="checked"	paytype="0" alt="20.00" value="快递">快递</label></th>
 										<td>直接由第三方物流公司配送 运费：￥20.00 &nbsp;&nbsp;</td>
 									</tr>
 									<tr>
-										<th><label><input type="radio" name="delivery_id"
-												paytype="0" alt="10.00" value="2">EMS</label></th>
+										<th><label><input type="radio" name="order.deliveryType"
+												paytype="0" alt="10.00" value="EMS">EMS</label></th>
 										<td>运费：￥10.00 &nbsp;&nbsp;</td>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr>
 										<th>指定送货时间：</th>
-										<td><label class="attr"><input type="radio"
-												name="accept_time" checked="checked" value="任意">任意</label> <label
-											class="attr"><input type="radio" name="accept_time"
-												value="周一到周五">周一到周五</label> <label class="attr"><input
-												type="radio" name="accept_time" value="周末">周末</label></td>
+										<td><label class="attr">
+										<input type="radio" name="order.deliveryTime" checked="checked" value="任意">任意</label> <label
+											class="attr">
+											<input type="radio" name="order.deliveryTime" value="周一到周五">周一到周五</label> <label class="attr">
+											<input type="radio" name="order.deliveryTime" value="周末">周末</label></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -101,18 +99,18 @@
 								<col />
 
 								<tr>
-									<th><label><input class="radio" name="paytype"
-											alt="0" title="预存款支付" type="radio" value="1" />预存款支付</label></th>
+									<th><label><input class="radio" name="order.payType"
+											alt="0" title="预存款支付" type="radio" value="预存款支付" />预存款支付</label></th>
 									<td>支付手续费：￥0</td>
 								</tr>
 								<tr>
-									<th><label><input class="radio" name="paytype"
-											alt="0" title="支付宝" type="radio" value="2" />支付宝</label></th>
+									<th><label><input class="radio" name="order.payType"
+											alt="0" title="支付宝" type="radio" value="支付宝" />支付宝</label></th>
 									<td>支付手续费：￥0</td>
 								</tr>
 								<tr>
-									<th><label><input class="radio" name="paytype"
-											checked alt="0" title="支付宝" type="radio" value="3" />货到付款</label></th>
+									<th><label><input class="radio" name="order.payType" checked="checked"
+											alt="0" title="货到付款" type="radio" value="货到付款" />货到付款</label></th>
 									<td>支付手续费：￥0</td>
 								</tr>
 							</table>
@@ -142,24 +140,31 @@
 								</thead>
 
 								<tbody>
-
-
+								<c:set var="totalMoney" value="0"></c:set>
+								<c:forEach items="${orderDetails}" var="orderDetail" varStatus="s">
+								
 									<tr>
-										<td><img src="images/goods/apple.jpg" width="66px"
-											height="66px" alt="苹果（Apple）iPhone 6 (A1586) 64GB"
-											title="苹果（Apple）iPhone 6 (A1586) 64GB" /></td>
-										<td class="t_l"><a href="" class="blue">苹果（Apple）iPhone
-												6 (A1586) 64GB</a></td>
-										<td>￥<b>5800.00</b></td>
-										<td>1</td>
-										<td>￥<b class="red2">5800.00</b></td>
+									
+										<td>
+										<!-- //传递orderDetail要使用index，直接传是不成功的 -->
+										<!-- 下标用s.index表示，http://www.opencms-wiki.org/wiki/C:forEach -->
+										<input type="hidden" name="orderDetails[${s.index }].goods.id" value="${orderDetail.goods.id}" />
+										<input type="hidden" name="orderDetails[${s.index }].nums" value="${orderDetail.nums}" />
+										<img src="${orderDetail.goods.thumbnail}" width="66px"
+											height="66px" alt="${orderDetail.goods.name}"
+											title="${orderDetail.goods.name}" /></td>
+										<td class="t_l"><a href="" class="blue">${orderDetail.goods.name}</a></td>
+										<td>￥<b>${orderDetail.goods.price2}</b></td>
+										<td>${orderDetail.nums}</td>
+										<td>￥<b class="red2">${orderDetail.nums*orderDetail.goods.price2}</b></td>
 									</tr>
+									<c:set var="totalMoney" value="${totalMoney+orderDetail.nums*orderDetail.goods.price2}"/>
 									<!-- 商品展示 结束-->
-
+									
+								</c:forEach>
 								</tbody>
 							</table>
-							<input type="hidden" name="goodsid" value="" /> <input
-								type="hidden" name="nums" value="" />
+							<input type="hidden" name="order.totalMoney" value="${totalMoney }" />
 						</div>
 						<!--购买清单 结束-->
 
@@ -172,7 +177,7 @@
 						<strong>结算信息</strong>
 						<div class="pink_box">
 							<p class="f14 t_l">
-								商品总金额：<b>5800.00</b> + 运费总计：<b id='delivery_fee_show'>0.00</b>
+								商品总金额：<b>${totalMoney }</b> + 运费总计：<b id='delivery_fee_show'>0.00</b>
 							</p>
 						</div>
 						<hr class="dashed" />
@@ -183,7 +188,7 @@
 								<col width="250px" />
 								<tr>
 									<td class="t_r"><b class="price f14">应付总额：<span
-											class="red2">￥<b id='final_sum'>5800.00</b></span>元
+											class="red2">￥<b id='final_sum'>${totalMoney}</b></span>元
 									</b></td>
 								</tr>
 							</table>

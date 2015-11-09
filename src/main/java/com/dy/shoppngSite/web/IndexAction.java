@@ -9,7 +9,7 @@ public class IndexAction {
 	private CategoryService categoryService;
 	private List<Category> categories;
 	public String execute(){
-		System.out.println("in index");
+		//System.out.println("in index");
 		categories = categoryService.getCategoriesForIndex();
 		
 		return "index";
