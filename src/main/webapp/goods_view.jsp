@@ -8,7 +8,10 @@
 <meta charset="utf-8" />
 <title>${goods.name}_${site}</title>
 <jsp:include page="base.jsp" />
-<script src="js/jquery-2.0.3.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/shopcar.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
 <script type="text/javascript">
 	function buy_now() {
 		location.href = "order_add.jsp";
@@ -60,14 +63,13 @@
 
 
 	function order_add() {
-		var nums = document.getElementById("buyNums").value;
-		location.href = "orderservlet?opr=initadd&id=${goods.id}&nums=" + nums;
+		location.href = "order_add?orderDetails[0].goods.id=${goods.id}&orderDetails[0].nums="+$("buyNums").val;
 	}
 	
 	//加入购物车
 	function joinCart(){
-		alert("${goods.id}");
-		alert($('#buyNums').val());
+		add("${goods.id}",$("#buyNums").val());
+		$("#product_myCart").show();
 	}
 </script>
 
@@ -106,7 +108,7 @@
 						</dd>
 					</dl>
 					<input class="submit_buy" type="button" id="buyNowButton"
-						value="立即购买" onclick="location.href='order_add.jsp'" />
+						value="立即购买" onclick="order_add()" />
 
 					<div class="shop_cart" style="z-index:1">
 						<input class="submit_join" type="button" id="joinCarButton"

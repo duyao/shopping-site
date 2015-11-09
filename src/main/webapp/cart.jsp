@@ -12,6 +12,54 @@
 	function finish() {
 		location.href = "order_add.jsp";
 	}
+	$(function(){
+	//得到cooki中的物品，转为json格式
+		var goodses = get();
+		//取出所有id，拼接为json
+		//goodsIds和action中对应
+		var params="{\"goodsIds\":\"";
+		for(var i=0;i<goodses.length;i++){
+			//拼接商品id
+			params+= goodses[i].goodsId+",";
+		}
+		params=params.substr(0,params.length-1);
+		params+="\"}";
+		//发送ajax请求
+		$.getJSON("goods_getGoodsesByIds",JSON.parse(params),function(r){
+			alert(r);
+			 var json=JSON.parse(r);
+		 var totalMoney=0;
+		 for(var i=0;i<json.length;i++){
+		 	//将商品数量goodsNum添加到json中
+		 	addJSON(json[i], {"goodsNum":getGoodsNumById(goodses,json[i].id)});
+		 	var index = i;
+		 	addJSON(json[i],{"index":index});
+		 	var html=template("goodsTemplate",json[i]);
+		 	$("#goodsList").prepend(html);
+		 	totalMoney+=json[i].price2*json[i].goodsNum;
+		 }
+		 $("#sum_price").html("￥"+totalMoney);
+		});
+	});
+</script>
+<script id="goodsTemplate" type="text/plain">
+<tr>
+	<td><input type="hidden" name="orderDetails[{{index}}].goods.id" value="{{id}}"><img src="{{thumbnail}}" width="66px"
+		height="66px" alt="{{name}}"
+		title="{{name}}" /></td>
+	<td class="t_l"><a href="" class="blue">苹果（Apple）iPhone 6
+			(A1586) 64GB</a></td>
+	<td>￥<b>{{price2}}</b></td>
+	<td>
+		<div class="num">
+			<a class="reduce" href="javascript:void(0)" onclick=''>-</a> <input name="orderDetails[{{index}}].nums" 
+				class="tiny" value="{{goodsNum}}" onblur='' type="text" id="goods_count_3">
+			<a class="add" href="javascript:void(0)" onclick=''>+</a>
+		</div>
+	</td>
+	<td>￥<b class="red2" id="goods_sum_3">{{price2*goodsNum}}</b></td>
+	<td><a href="">删除</a></td>
+</tr>
 </script>
 </head>
 <body class="second">
@@ -28,7 +76,7 @@
 					<li class="last"><span>3、成功提交订单</span></li>
 				</ul>
 			</div>
-
+<form action="" id="form1">
 			<table width="100%" class="cart_table m_10">
 				<col width="115px" />
 				<col width="400px" />
@@ -46,25 +94,9 @@
 						<th class="last">操作</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="goodsList">
 
-					<tr>
-						<td><img src="images/goods/apple.jpg" width="66px"
-							height="66px" alt="苹果（Apple）iPhone 6 (A1586) 64GB"
-							title="苹果（Apple）iPhone 6 (A1586) 64GB" /></td>
-						<td class="t_l"><a href="" class="blue">苹果（Apple）iPhone 6
-								(A1586) 64GB</a></td>
-						<td>￥<b>5600.00</b></td>
-						<td>
-							<div class="num">
-								<a class="reduce" href="javascript:void(0)" onclick=''>-</a> <input
-									class="tiny" value="1" onblur='' type="text" id="goods_count_3">
-								<a class="add" href="javascript:void(0)" onclick=''>+</a>
-							</div>
-						</td>
-						<td>￥<b class="red2" id="goods_sum_3">5600.00</b></td>
-						<td><a href="">删除</a></td>
-					</tr>
+				
 
 					<tr class="stats">
 						<td colspan="8">金额总计（不含运费）：￥<b class="orange" id='sum_price'>1000</b></td>
@@ -78,7 +110,7 @@
 					</tr>
 				</tfoot>
 			</table>
-
+</form>
 			<div class="box">
 				<div class="title">热门商品推荐</div>
 			</div>

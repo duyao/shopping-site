@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.json.JsonArray;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
@@ -16,27 +21,46 @@ import com.dy.shoppingSite.util.MyUntil;
 public class GoodsAction {
 	private GoodsService goodsService;
 	private Goods goods;
-	
-	public String view(){
+
+	private String goodsIds;
+	private String result;
+
+	public String getGoodsesByIds() {
+		String[] ids = goodsIds.split(",");
+		goodses = goodsService.getGoodsByIds(ids);
+		// 返回服务器端json格式
+		JsonConfig config = new JsonConfig();
+		// 因为没有查询全部，因此没有查询的列不用转为json
+		config.setExcludes(new String[] { "category", "goodsNo", "categoryId",
+				"price1", "stock", "description" });
+		// 转化为json格式
+		JSONArray array = JSONArray.fromObject(goodses, config);
+		result = array.toString();
+
+		return "getgoodsbyids";
+	}
+
+	public String view() {
 		goods = goodsService.getGoodsById(goods.getId());
 		return "view";
 	}
-	
-	public String listByCate(){
+
+	public String listByCate() {
 		goodses = goodsService.getGoodsByCateId(goods.getCategoryId());
 		return "listByCate";
 	}
-	
-	public String del(){
+
+	public String del() {
 		goodsService.delGoods(goods.getId());
 		return "delsuc";
 	}
 
 	public String update() {
-		//用户传入了新的图片
+		// 用户传入了新的图片
 		if (thumbnail != null) {
 			// 得到文件存放的绝对地址，没有到、goodsImg，数据库中已经存，后面删除只需要知道前面的
-			String path = ServletActionContext.getServletContext().getRealPath("/");
+			String path = ServletActionContext.getServletContext().getRealPath(
+					"/");
 			// 存放的文件名
 			String saveName = "";
 			// 得到才上传文件的后缀名
@@ -55,7 +79,7 @@ public class GoodsAction {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//删除原有文件
+			// 删除原有文件
 			new File(path + "/" + goods.getThumbnail()).delete();
 			// 存放到数据库中
 			goods.setThumbnail("goodsImages/" + saveName);
@@ -219,6 +243,22 @@ public class GoodsAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public String getGoodsIds() {
+		return goodsIds;
+	}
+
+	public void setGoodsIds(String goodsIds) {
+		this.goodsIds = goodsIds;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 }

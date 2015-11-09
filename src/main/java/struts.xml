@@ -5,7 +5,11 @@
 
 <struts>
 	<constant name="struts.objectFactory" value="spring" />
-	<package name="shoppingSite" extends="struts-default">
+	<!-- <package name="shoppingSite" extends="struts-default"> -->
+	<!-- 后面要传给服务器json格式，因此要继承json-default -->
+	<package name="shoppingSite" extends="json-default">
+
+
 		<!-- class是spring中制定的 -->
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="regsuc">/login.jsp </result>
@@ -52,6 +56,10 @@
 			<result name="delsuc" type="redirectAction">goods_listGoodsByPage</result>
 			<result name="listByCate">/goods_list.jsp</result>
 			<result name="view">/goods_view.jsp</result>
+			<result name="getgoodsbyids" type="json">
+			<!-- action中已经定义好的返回值 -->
+				<param name="root">result</param>
+			</result>
 		</action>
 
 		<action name="index" class="indexAction">

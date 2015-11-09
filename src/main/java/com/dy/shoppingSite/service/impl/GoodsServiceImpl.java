@@ -125,6 +125,11 @@ public class GoodsServiceImpl implements GoodsService {
 		//每页显示6条商品
 		return goodsDao.getGoodsByCateId(categoryId, 6);
 	}
+	@Override
+	public List<Goods> getGoodsByIds(String... ids) {
+		// TODO Auto-generated method stub
+		return goodsDao.getGoodsByIds(ids);
+	}
 	
 	
 	

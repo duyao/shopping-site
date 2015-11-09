@@ -91,21 +91,33 @@
 
 	<update id="updateGoods" parameterType="Goods">
 		update shop_goods
-		set goodsNo = #{goodsNo}, name = #{name}, categoryId = #{categoryId},
-		price1 = #{price1},price2 = #{price2}, stock = #{stock}, thumbnail = #{thumbnail}, description= #{description}
+		set
+		goodsNo = #{goodsNo}, name = #{name}, categoryId = #{categoryId},
+		price1 = #{price1},price2 = #{price2}, stock = #{stock}, thumbnail =
+		#{thumbnail}, description= #{description}
 		where id = #{id}
 	</update>
 
 	<select id="getGoodsById" parameterType="string" resultType="Goods">
 		select * from shop_goods where id = #{id}
 	</select>
-	
+
 	<delete id="delGoods" parameterType="string">
-		delete from shop_goods where id = #{id}
+		delete from shop_goods where
+		id = #{id}
 	</delete>
 
 	<select id="getGoodsByCateId" resultType="Goods">
-		select * from shop_goods WHERE categoryId = #{0} LIMIT #{1}
+		select * from
+		shop_goods WHERE categoryId = #{0} LIMIT #{1}
+	</select>
+
+	<select id="getGoodsByIds" resultType="Goods">
+		select id, name, price2, thumbnail from shop_goods where id in
+		<foreach collection="array" open="(" close=")" separator=","
+			index="index" item="id">
+			#{id}
+		</foreach>
 	</select>
 
 </mapper>

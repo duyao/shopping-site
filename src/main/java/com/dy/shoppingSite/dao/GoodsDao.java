@@ -24,5 +24,7 @@ public interface GoodsDao {
 	//为首页展示商品而设计的，根据categoryId得到一定数目的商品
 	public List<Goods> getGoodsByCateId(String categoryId,int num);
 	
+	public List<Goods> getGoodsByIds(String[] ids);
+	
 	
 }

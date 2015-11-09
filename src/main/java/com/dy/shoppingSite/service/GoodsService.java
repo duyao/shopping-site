@@ -17,4 +17,6 @@ public interface GoodsService {
 	public void delGoods(String id);
 	
 	public List<Goods> getGoodsByCateId(String categoryId);
+	//string...表示变长数组
+	public List<Goods> getGoodsByIds(String... ids);
 }
